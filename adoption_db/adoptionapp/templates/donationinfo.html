@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+</head>
+
+<body class="single-page about-page">
+
+<header class="site-header">
+    {% include 'donor_menu.html' %}
+</header>
+
+<div class="page-header mb-4"></div>
+
+<div class="container my-5">
+    <div class="row align-items-center">
+
+
+
+        <!-- Donation Form -->
+        <div class="col-lg-6">
+            <p class="text-secondary fs-5">
+    ❤️ <strong>Your small contribution can change a life.</strong><br>
+    "Giving is not just about making a donation, it's about making a difference."
+</p>
+
+            <h2 class="mb-4 text-primary fw-bold">Give Donation</h2>
+
+            <form method="post" class="bg-white p-4 rounded shadow">
+                {% csrf_token %}
+
+                <!-- Charity ID -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Charity ID</label>
+                    <input type="text" name="t1" value="{{ username }}" class="form-control" readonly>
+                </div>
+
+                <!-- Amount -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Donation Amount</label>
+                    <input type="text" name="t2" class="form-control" placeholder="Enter amount" required>
+                </div>
+
+                <!-- Donation Things -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Donation Things</label>
+                    <input type="text" name="t3" class="form-control" placeholder="Example: Clothes, Food, Toys">
+                </div>
+
+                <!-- Date -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Donation Date</label>
+                    <input type="date" name="t4" class="form-control" required>
+                </div>
+
+                <!-- Purpose -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Purpose</label>
+                    <input type="text" name="t5" class="form-control" placeholder="Enter purpose" required>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
+                    Submit Donation
+                </button>
+            </form>
+        </div>
+
+        <!-- Image -->
+        <div class="col-lg-6 text-center mb-3">
+            <img src="{% static 'images/welcome.jpg' %}" alt="Donation" class="img-fluid rounded shadow">
+        </div>
+
+    </div>
+</div>
+
+<footer class="site-footer bg-dark text-white text-center py-3 mt-5">
+    <p class="m-0">© <script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>

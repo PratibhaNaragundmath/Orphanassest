@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" action="{% url 'homevstngstatus_db'%}">
+    {% csrf_token %}
+    <table border="1" width="400" height="400">
+
+        {% for i in userdict %}
+        <input type="hidden" name="id" value="{{i.id}}">
+
+
+        <tr>
+            <td>doc_verification</td>
+            <td><input type="text" name="t3" value="{{i.doc_verification}}"></td>
+        </tr>
+        <tr>
+            <td>visiting_status</td>
+            <td><input type="text" name="t4" value="{{i.visiting_status}}"></td>
+        </tr>
+
+         <tr>
+            <td></td>
+            <td><input type="submit"></td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+
+
+
+
+</body>
+</html>

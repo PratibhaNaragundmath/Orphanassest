@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Child Adoption</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <style>
+        .form-card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-card h4 {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .adoption-side-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+        }
+
+        .adoption-side-box h5 {
+            color: #FF6600;
+            font-weight: 700;
+        }
+
+        .adoption-img {
+            border-radius: 12px;
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .btn-submit {
+            background-color: #FF6600;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            color: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body class="single-page about-page">
+
+<!-- HEADER -->
+{% include 'parent_header.html' %}
+
+<div class="page-header py-3" style="background:#FFF2E6;">
+</div>
+
+<div class="welcome-wrap py-5">
+    <div class="container">
+        <div class="row gy-4">
+
+            <!-- LEFT SIDE : FORM -->
+            <div class="col-lg-7">
+                <div class="form-card">
+                    <h4>Applicant Information</h4>
+                    <p><a href="{{ request.META.HTTP_REFERER }}" style="color:#0056b3;font-weight:bold;">← Go Back</a></p>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="t4" value="{{ occupation }}">
+                        <input type="hidden" name="t5" value="{{ username }}">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label>Application No.</label>
+                                <input type="text" class="form-control" name="t9" value="{{ request_id }}">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Parent Type</label>
+                                <select class="form-select" name="type">
+                                    <option value="Single Parent">Single Parent</option>
+                                    <option value="Two Parent">Two Parent</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Applicant Name</label>
+                                <input type="text" class="form-control" name="t1">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Husband Name</label>
+                                <input type="text" class="form-control" name="t2">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Spouse Name</label>
+                                <input type="text" class="form-control" name="t22">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Education</label>
+                                <input type="text" class="form-control" name="t3">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Photo</label>
+                                <input type="file" class="form-control" name="myfile">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Marriage Certificate/Undertaken letter(single)</label>
+                                <input type="file" class="form-control" name="myfile1">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Aadhar Copy</label>
+                                <input type="file" class="form-control" name="myfile2">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" name="t8">
+                            </div>
+
+                            <div class="col-12 mt-3">
+                                <button class="btn-submit">Submit Application</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE : ADOPTION INFO -->
+            <div class="col-lg-5">
+                <div class="adoption-side-box mb-4">
+                    <h5>Why Adoption?</h5>
+                    <p>Adoption brings families together and transforms the lives of children who deserve love, care, and a safe future.</p>
+                </div>
+
+                <img src="{% static 'images/welcome.jpg' %}" class="adoption-img" alt="Adoption">
+
+                <div class="adoption-side-box mt-4">
+                    <h5>Important Notes</h5>
+                    <ul>
+                        <li>Keep all documents ready</li>
+                        <li>Ensure phone number is active</li>
+                        <li>Marriage certificate required for two-parent adoption</li>
+                        <li>Applications are processed within 7–15 days</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+!-- FOOTER -->
+<footer class="bg-dark text-white py-3 text-center">
+    <p class="m-0">
+        &copy; <script>document.write(new Date().getFullYear());</script> Child Adoption | All rights reserved.
+    </p>
+</footer>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>

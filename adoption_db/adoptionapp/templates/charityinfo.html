@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orphan Assist - Donor Registration</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #e3f2fd, #ede7f6);
+      min-height: 100vh;
+    }
+
+    .register-card {
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: white;
+    }
+
+    .left-box {
+      background: #0066ff;
+      border-radius: 20px 0 0 20px;
+      padding: 40px;
+      color: white;
+    }
+
+    .left-box h2 {
+      font-weight: 700;
+    }
+
+    .right-box {
+      padding: 40px;
+    }
+
+    .right-box h3 {
+      font-weight: 700;
+      color: #0056d6;
+    }
+
+    .btn-register {
+      width: 100%;
+      background: #0066ff;
+      border: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    .btn-register:hover {
+      background: #0056d6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary px-4"
+     style="background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);">
+
+  <a class="navbar-brand text-white fs-1 fw-bold" href="#">Orphan Assist</a>
+  <div class="collapse navbar-collapse justify-content-end">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'about' %}">About Us</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'login' %}">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Donor Registration Form -->
+<div class="container d-flex justify-content-center align-items-center py-5">
+  <div class="row register-card w-75">
+
+    <!-- Left Box -->
+    <div class="col-md-6 left-box d-flex flex-column justify-content-center text-center">
+      <h2>Become a Donor</h2>
+      <p>Your contribution can change a child's life</p>
+      <img src="https://cdn-icons-png.flaticon.com/512/3063/3063822.png" width="160" class="mx-auto mt-3" />
+    </div>
+
+    <!-- Right Box -->
+    <div class="col-md-6 right-box">
+
+      <h3>Donor Registration</h3>
+      <p class="text-muted">Fill in your details to join our cause</p>
+      <p class="text-danger fw-bold text-center">{{ msg }}</p>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" name="t1" placeholder="Enter full name" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" name="t2" placeholder="Enter address" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Contact Number</label>
+          <input type="text" class="form-control" name="t3" placeholder="Enter phone number" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="t4" placeholder="Enter email" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Occupation</label>
+          <input type="text" class="form-control" name="t5" placeholder="Enter occupation" required>
+        </div>
+
+        <button class="btn btn-register mt-3">Submit</button>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

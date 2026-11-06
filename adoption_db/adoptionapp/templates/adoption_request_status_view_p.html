@@ -1,0 +1,119 @@
+{% load static %}
+{% include 'parent_header.html' %}
+
+<style>
+    .adoption-bg-left {
+        background: url("{% static 'images/adopt-left.png' %}") no-repeat center;
+        background-size: contain;
+        min-height: 300px;
+    }
+    .adoption-bg-right {
+        background: url("{% static 'images/adopt-right.png' %}") no-repeat center;
+        background-size: contain;
+        min-height: 300px;
+    }
+
+    .status-card {
+        border-radius: 15px;
+        background: #ffffff;
+        padding: 30px;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .entry-title {
+        font-weight: 700;
+        color: #0056b3;
+    }
+
+    table.table {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+</style>
+
+<div class="welcome-wrap py-5">
+  <div class="container">
+
+    <div class="row mb-4">
+      <div class="col-md-3 d-none d-md-block adoption-bg-left"></div>
+
+      <div class="col-md-10>
+        <div class="status-card">
+          <header class="entry-header text-center mb-4">
+            <h2 class="entry-title">Adoption Request Status</h2>
+            <p class="text-muted">Track your application progress</p>
+          </header>
+
+          <div class="entry-content">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped text-center align-middle">
+                <thead class="table-primary">
+                  <tr>
+                    <th>Application No</th>
+                    <th>Request Date</th>
+                    <th>Request Status</th>
+                    <th>Adoption Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in userdict %}
+                  <tr>
+                    <td>{{ i.appln_no }}</td>
+                    <td>{{ i.requestdate }}</td>
+                    <td>
+                      {% if i.requeststatus == "Pending" %}
+                        <span class="badge bg-warning text-dark px-3 py-2">Pending</span>
+                      {% elif i.requeststatus == "Approved" %}
+                        <span class="badge bg-success px-3 py-2">Approved</span>
+                      {% elif i.requeststatus == "Rejected" %}
+                        <span class="badge bg-danger px-3 py-2">Rejected</span>
+                      {% else %}
+                        {{ i.requeststatus }}
+                      {% endif %}
+                    </td>
+
+                    <td>
+                      {% if i.adoptionstatus == "Completed" %}
+                        <span class="badge bg-success px-3 py-2">Completed</span>
+                      {% elif i.adoptionstatus == "In Progress" %}
+                        <span class="badge bg-info text-dark px-3 py-2">In Progress</span>
+                      {% else %}
+                        {{ i.adoptionstatus }}
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="4" class="text-center text-muted">No adoption requests found</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 d-none d-md-block adoption-bg-right"></div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+  <div class="footer-bar bg-secondary py-3 text-center">
+    <div class="container">
+      <p class="m-0">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script>
+        All rights reserved | OrphanAssest
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>

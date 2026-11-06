@@ -1,0 +1,11 @@
+ body { background: linear-gradient(to bottom right, #e3f2fd, #ede7f6); height: 100vh; }
+    .login-card { border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .left-box { background: #0066ff; border-radius: 20px 0 0 20px; color: white; padding: 40px; }
+    .right-box { padding: 40px; }
+    .login-btn { width: 100%; background: #0066ff; border: none; }
+    .rule-card, .additional-rules, .legal-notice { margin-bottom: 12px; padding: 12px; border-radius: 8px; }
+    .rules-scroll { max-height: 400px; overflow-y: auto; background: rgba(0,0,0,0.02); padding: 20px; border-radius: 8px; }
+    .additional-rules { background: rgba(224, 122, 95, 0.1); border: 1px solid rgba(224, 122, 95, 0.2); }
+    .legal-notice { background: #f8f9fa; }
+    #rulesSection, #loginSection { display: none; }
+    #rulesSection.active, #loginSection.active { display: block; }

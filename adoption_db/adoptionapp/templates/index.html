@@ -1,0 +1,553 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="{% static 'css/elegant-fonts.css' %}">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+    <!-- Styles -->
+<style>
+.hero-slider,
+.hero-slider .swiper-slide {
+    height: 50vh;  /* Full screen */
+}
+
+.hero-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;   /* vertical center */
+    justify-content: center; /* horizontal center */
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+}
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Navigation hover glow */
+.nav-link-custom {
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-link-custom:hover {
+    color: #00eaff !important;
+    text-shadow: 0 0 8px rgba(0, 234, 255, 0.8);
+
+}
+.dropdown-menu {
+    background-color: #ffffff !important;   /* solid white background */
+    z-index: 9999 !important;               /* bring to front */
+}
+
+.dropdown-item {
+    color: #000000 !important;              /* make text black */
+    font-weight: 500;
+}
+.about {
+    font-family: "Georgia", Times, serif;
+    font-style: italic;
+    font-size: 35px;
+}
+.dropdown-item:hover {
+    background-color: #dc3545 !important;  /* red hover */
+    color: #ffffff !important;
+}
+
+
+
+/* Transparent text on slider */
+.hero-content-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 40px;
+}
+
+.hero-content-overlay h1,
+.hero-content-overlay h4 {
+    color: rgba(255, 255, 255, 0.90);
+    text-shadow: 0px 3px 8px rgba(0,0,0,0.6);
+    backdrop-filter: blur(1px);
+}
+.entry-content p {
+    color: #ffffff;              /* white text *
+    font-size: 2.2rem;   /* increase size */
+    line-height: 1.6;   /* better spacing */
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+   <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+         style="background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);">
+
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="{% url 'index' %}" style="font-size:30px;font-weight:bold">
+                <span class="fs-1"> Orphan Assist </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse nav justify-content-end" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white nav-link-custom" href="{% url 'index' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white nav-link-custom" href="{% url 'about' %}">About</a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white nav-link-custom" href="{% url 'contact' %}">Contact</a>
+                    </li>
+
+                    <li class="nav-item mx-2 ">
+                        <a class="nav-link text-white nav-link-custom btn btn-danger" href="{% url 'charityinfo' %}">
+                            Donor Reg</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                          <button class="nav-link text-white btn btn-danger dropdown-toggle"
+                                  id="dropdownMenuButton1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false">
+                              Login
+                          </button>
+
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="{% url 'login' %}">Parents</a></li>
+                              <li><a class="dropdown-item" href="{% url 'login' %}">Donor</a></li>
+                              <li><a class="dropdown-item" href="{% url 'login' %}">Admin</a></li>
+                              <li><a class="dropdown-item" href="{% url 'login' %}">Manager</a></li>
+                          </ul>
+                        </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <div class="swiper-container hero-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide hero-content-wrap">
+                <img src="{% static 'images/hero.jpg' %}" alt="">
+
+               <div class="hero-content-overlay position-absolute w-100 h-100"
+     style="background: rgba(0, 0, 0, 0.35);">
+
+                    <div class="container h-100">
+                        <div class="row h-100">
+                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
+                                <header class="entry-header">
+                                    <h1 style="font-size:54px;">Donate & Adopt</h1>
+                                    <h4 style="font-size:24px;">Connect a better world</h4>
+                                </header><!-- .entry-header -->
+
+                               <!-- .entry-content -->
+
+                                <!-- .entry-footer -->
+                            </div><!-- .col -->
+                        </div><!-- .row -->
+                    </div><!-- .container -->
+                </div><!-- .hero-content-overlay -->
+            </div><!-- .hero-content-wrap -->
+
+            <div class="swiper-slide hero-content-wrap">
+                <img src="{% static 'images/hero.jpg'%}" alt="">
+
+                <div class="hero-content-overlay position-absolute w-100 h-100"
+     style="background: rgba(0, 0, 0, 0.35);">
+
+                    <div class="container h-100">
+                        <div class="row h-100">
+                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
+                                <header class="entry-header">
+                                    <h1 style="font-size:54px;">Donate & Adopt</h1>
+                                    <h4 style="font-size:24px;">Connect a better world</h4>
+                                </header><!-- .entry-header -->
+
+                               <!-- .entry-content -->
+
+                               <!-- .entry-footer -->
+                            </div><!-- .col -->
+                        </div><!-- .row -->
+                    </div><!-- .container -->
+                </div><!-- .hero-content-overlay -->
+            </div><!-- .hero-content-wrap -->
+
+            <div class="swiper-slide hero-content-wrap">
+                <img src="{% static 'images/hero.jpg' %}" alt="">
+
+               <div class="hero-content-overlay position-absolute w-100 h-100"
+     style="background: rgba(0, 0, 0, 0.35);">
+
+                    <div class="container h-100">
+                        <div class="row h-100">
+                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
+                               <header class="entry-header">
+                                    <h1 style="font-size:54px;">Donate & Adopt</h1>
+                                    <h4 style="font-size:24px;">Connect a better world</h4>
+                                </header><!-- .entry-header -->
+
+                               <!-- .entry-content -->
+
+                               <!-- .entry-footer -->
+                            </div><!-- .col -->
+                        </div><!-- .row -->
+                    </div><!-- .container -->
+                </div><!-- .hero-content-overlay -->
+            </div><!-- .hero-content-wrap -->
+        </div><!-- .swiper-wrapper -->
+
+        <div class="pagination-wrap position-absolute w-100">
+            <div class="container">
+                <div class="swiper-pagination"></div>
+            </div><!-- .container -->
+        </div><!-- .pagination-wrap -->
+
+        <!-- Add Arrows -->
+        <div class="swiper-button-next flex justify-content-center align-items-center">
+            <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg></span>
+        </div>
+
+        <div class="swiper-button-prev flex justify-content-center align-items-center">
+            <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg></span>
+        </div>
+    </div><!-- .hero-slider -->
+
+    <div class="home-page-icon-boxes" style="margin-top:-50px;">
+        <div class="container">
+            <h1> Child Adoption </h1>
+            <div class="row">
+
+                <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box active">
+                        <figure class="d-flex justify-content-center">
+                            <img src="{% static 'images/hands-gray.png'%}" alt="">
+                            <img src="{% static 'images/hands-white.png'%}" alt="">
+                        </figure>
+
+                        <header class="entry-header">
+                            <h3 class="entry-title">Become a Volunteer</h3>
+                        </header>
+
+                            <div class="entry-content">
+                            <p>To bring smiles on the many faces in the world, become a volunteer. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <figure class="d-flex justify-content-center">
+                            <img src="{% static 'images/donation-gray.png' %}" alt="">
+                            <img src="{% static 'images/donation-white.png' %}" alt="">
+                        </figure>
+
+                        <header class="entry-header">
+                            <h3 class="entry-title">Join Your Helping Hand</h3>
+                        </header>
+
+                        <div class="entry-content">
+                            <p>Your one response changes ones life. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <figure class="d-flex justify-content-center">
+                            <img src="{% static 'images/charity-gray.png'%}" alt="">
+                            <img src="{% static 'images/charity-white.png'%}" alt="">
+                        </figure>
+
+                        <header class="entry-header">
+                            <h3 class="entry-title">Baby Adoption</h3>
+                        </header>
+
+                        <div class="entry-content">
+                            <p>Adopt for a cause,Adopt for Happiness </p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .home-page-icon-boxes -->
+
+    <div class="home-page-welcome">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 order-2 order-lg-1">
+                    <div class="welcome-content">
+                        <header class="entry-header">
+                            <h2 class="entry-title">Welcome to our Cummunity</h2>
+                        </header><!-- .entry-header -->
+
+                        <div class="entry-content mt-5">
+                                <p class="about">
+                                    Bring peace to everyones life.OrphanAssist connects orphanages, adoptive parents, and donors through a secure, transparent platform—making child adoption easier, safer, and more accessible for everyone.
+                                </p>
+                        </div>
+<!-- .entry-content -->
+
+                       <!-- .entry-footer -->
+                    </div><!-- .welcome-content -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-lg-6 mt-4 order-1 order-lg-2">
+                    <img src="{% static 'images/welcome.jpg' %}" alt="welcome">
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .home-page-icon-boxes -->
+
+    <div class="home-page-events">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="upcoming-events">
+                        <div class="section-heading">
+                            <h2 class="entry-title">Upcoming Events</h2>
+                        </div><!-- .section-heading -->
+
+                        <div class="event-wrap d-flex flex-wrap justify-content-between">
+                            <figure class="m-0">
+                                <img src="{% static 'images/event-1.jpg'%}" alt="">
+                            </figure>
+
+                            <div class="event-content-wrap">
+                                <header class="entry-header d-flex flex-wrap align-items-center">
+                                    <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+
+                                    <div class="posted-date">
+                                        <a href="#">Aug 25, 2018 </a>
+                                    </div><!-- .posted-date -->
+
+                                    <div class="cats-links">
+                                        <a href="#">Ball Room New York</a>
+                                    </div><!-- .cats-links -->
+                                </header><!-- .entry-header -->
+
+                                <div class="entry-content">
+                                    <p class="m-0 text-darker">Every child deserves love, care, and a bright future. This fundraiser supports underprivileged and orphaned children by providing food, education, healthcare, and a safe environment to grow. Your donation helps bring hope, happiness, and opportunities to children in need.
+
+                                           Together, we can make a difference—because every child matters.</p>
+                                </div><!-- .entry-content -->
+
+                               <!-- .entry-footer -->
+                            </div><!-- .event-content-wrap -->
+                        </div><!-- .event-wrap -->
+
+                        <div class="event-wrap d-flex flex-wrap justify-content-between">
+                            <figure class="m-0">
+                                <img src="{% static 'images/event-2.jpg'%}" alt="">
+                            </figure>
+
+                            <div class="event-content-wrap">
+                                <header class="entry-header d-flex flex-wrap align-items-center">
+                                    <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
+
+                                    <div class="posted-date">
+                                        <a href="#">Aug 25, 2018 </a>
+                                    </div><!-- .posted-date -->
+
+                                    <div class="cats-links">
+                                        <a href="#">Ball Room New York</a>
+                                    </div><!-- .cats-links -->
+                                </header><!-- .entry-header -->
+
+                                <div class="entry-content">
+                                    <p class="m-0"></p>
+                                </div><!-- .entry-content -->
+
+                               <!-- .entry-footer -->
+                            </div><!-- .event-content-wrap -->
+                        </div><!-- .event-wrap -->
+
+                        <div class="event-wrap d-flex flex-wrap justify-content-between">
+                            <figure class="m-0">
+                                <img src="{% static 'images/event-3.jpg'%}" alt="">
+                            </figure>
+
+                            <div class="event-content-wrap">
+                                <header class="entry-header d-flex flex-wrap align-items-center">
+                                    <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
+
+                                    <div class="posted-date">
+                                        <a href="#">Aug 25, 2018 </a>
+                                    </div><!-- .posted-date -->
+
+                                    <div class="cats-links">
+                                        <a href="#">Ball Room New York</a>
+                                    </div><!-- .cats-links -->
+                                </header><!-- .entry-header -->
+
+                                <div class="entry-content">
+                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
+                                </div><!-- .entry-content -->
+
+                                <!-- .entry-footer -->
+                            </div><!-- .event-content-wrap -->
+                        </div><!-- .event-wrap -->
+                    </div><!-- .upcoming-events -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-lg-6">
+                    <div class="featured-cause">
+                        <div class="section-heading">
+                            <h2 class="entry-title">Featured Cause</h2>
+                        </div><!-- .section-heading -->
+
+                        <div class="cause-wrap d-flex flex-wrap justify-content-between">
+                            <figure class="m-0">
+                                <img src="{% static 'images/featured-causes.jpg'%}" alt="">
+                            </figure>
+
+                            <div class="cause-content-wrap">
+                                <header class="entry-header d-flex flex-wrap align-items-center">
+                                    <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+
+                                    <div class="posted-date">
+                                        <a href="#">Aug 25, 2018 </a>
+                                    </div><!-- .posted-date -->
+
+                                    <div class="cats-links">
+                                        <a href="#">Ball Room New York</a>
+                                    </div><!-- .cats-links -->
+                                </header><!-- .entry-header -->
+
+                                <div class="entry-content">
+                                    <p class="m-0 text-dark">Every child deserves love, care, and a bright future. This fundraiser supports underprivileged and orphaned children by providing food, education, healthcare, and a safe environment to grow. Your donation helps bring hope, happiness, and opportunities to children in need.
+
+                                           Together, we can make a difference—because every child matters</p>
+                                </div><!-- .entry-content -->
+
+                                <div class="entry-footer mt-5">
+                                    <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
+                                </div><!-- .entry-footer -->
+                            </div><!-- .cause-content-wrap -->
+
+                            <div class="fund-raised w-100">
+                                <div class="featured-fund-raised-bar barfiller">
+                                    <div class="tipWrap">
+                                        <span class="tip"></span>
+                                    </div><!-- .tipWrap -->
+
+                                    <span class="fill" data-percentage="83"></span>
+                                </div><!-- .fund-raised-bar -->
+
+                                <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                    <div class="fund-raised-total mt-4">
+                                        Raised: $56 880
+                                    </div><!-- .fund-raised-total -->
+
+                                    <div class="fund-raised-goal mt-4">
+                                        Goal: $70 000
+                                    </div><!-- .fund-raised-goal -->
+                                </div><!-- .fund-raised-details -->
+                            </div><!-- .fund-raised -->
+                        </div><!-- .cause-wrap -->
+                    </div><!-- .featured-cause -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .home-page-events -->
+
+
+
+    <footer class="site-footer">
+    <div class="footer-widgets">
+        <div class="container">
+            <div class="row">
+                <!-- Left Column (Phone + Email) -->
+                <div class="col-12 col-md-6 mt-5 mt-md-0">
+                    <div class="foot-contact">
+                        <h2>Contact</h2>
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-phone"></i> <span>+91 9742577958, +91 9845205098</span></li>
+                            <li><i class="fa fa-envelope"></i> <span>Orphanassestlifeline@gmail.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column (Address) -->
+                <div class="col-12 col-md-6 mt-5 mt-md-0">
+                    <div class="foot-contact">
+                        <h2>Address</h2>
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-map-marker"></i>
+                                <span>Sushanti Children's Home, Brahmagiri Colony, Gadag.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .footer-widgets -->
+</footer>
+
+
+        <div class="footer-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> OrphanAssest | All rights reserved
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-bar -->
+    </footer><!-- .site-footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.collapsible.min.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/swiper.min.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.countdown.min.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/circle-progress.min.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.countTo.min.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.barfiller.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/custom.js'%}"></script>
+
+</body>
+</html>

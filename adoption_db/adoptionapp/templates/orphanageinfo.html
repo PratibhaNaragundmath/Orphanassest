@@ -1,0 +1,82 @@
+{% load static %}
+{% include 'admin_header.html' %}
+
+<div class="page-header py-4 bg-light">
+    <div class="container">
+        <h2 class="text-center">Orphan Details</h2>
+    </div>
+</div>
+
+<div class="welcome-wrap py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Form Section -->
+            <div class="col-12 col-lg-6">
+                <div class="card shadow p-4">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Member Name</label>
+                            <input type="text" name="t1" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Age</label>
+                            <input type="number" name="t2" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Joining Year</label>
+                            <input type="text" name="t3" class="form-control" placeholder="YYYY" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Blood Group</label>
+                            <input type="text" name="t4" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Guardian Name</label>
+                            <input type="text" name="t5" class="form-control" required>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-warning text-white">
+                                <i class="fas fa-paper-plane"></i> Submit
+                            </button>
+                            <button type="reset" class="btn btn-success text-white">
+                                <i class="fas fa-rotate-left"></i> Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="col-12 col-lg-6 text-center">
+                <img src="{% static 'images/welcome.jpg' %}" alt="welcome" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+
+
+    <div class="footer-bar bg-secondary py-3 text-center">
+        <div class="container">
+            <p class="m-0">Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | OrphanAssest
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/swiper.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

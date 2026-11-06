@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption - Registration Payment</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm p-4">
+                <h4 class="text-center text-danger mb-4">Pay the Registration Amount</h4>
+
+                <div class="text-center">
+                    <button id="rzp-button" class="btn btn-warning text-white px-4">Pay Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_Z1qzBJgJYDcceP",
+    "amount": 100000, // ₹1000 in paise
+    "currency": "INR",
+    "name": "Janani Life Line",
+    "description": "Registration Fees",
+    "handler": function (response){
+        alert("Payment Successful. ID: " + response.razorpay_payment_id);
+        window.location.href = "{% url 'payment_success' %}";
+    },
+    "prefill": {
+        "name": "Kirti",
+        "email": "useremail@gmail.com"
+    },
+    "theme": {
+        "color": "#F37254"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+</body>
+</html>

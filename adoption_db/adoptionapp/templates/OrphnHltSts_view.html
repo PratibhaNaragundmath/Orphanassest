@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1" width="400" height="400">
+        <tr style="background-color:blue;color:white">
+            <td>Member_id</td>
+            <td>Health_problems</td>
+            <td>last_checkup_date</td>
+            <td>Previous_checkupdate</td>
+            <td>Actions</td>
+
+        </tr>
+        {% for i in userdict %}
+        <tr>
+            <td>{{i.Member_id}}</td>
+            <td>{{i.Health_problems}}</td>
+            <td>{{i.last_checkup_date}}</td>
+            <td>{{i.Previous_checkupdate}}</td>
+
+             <td><a href="{% url 'OrphnHltSts_del' i.id %}">Delete</a></td>
+            <td><a href="{% url 'OrphnHltSts_update' i.id %}">update</a></td>
+
+
+        </tr>
+        {%endfor%}
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+{% load static %}
+{% include 'manager_header.html' %}
+
+<style>
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+    .card-custom {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .card-header-custom {
+        background: linear-gradient(90deg, #0056b3, #007bff);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .form-control, .form-select {
+        border-radius: 8px;
+    }
+    .back-link {
+        font-weight: bold;
+        color: #d00 !important;
+    }
+</style>
+
+<div class="container py-5">
+
+    <div class="card shadow card-custom">
+        <div class="card-header-custom">
+            <h3 class="m-0"><i class="fa fa-users"></i> Applicant Information</h3>
+        </div>
+
+        <div class="card-body p-4">
+
+            <a href="{{ request.META.HTTP_REFERER }}" class="back-link">
+                <i class="fa fa-arrow-left"></i> Go Back
+            </a>
+
+            {% for i in userdict %}
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ i.id }}">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <label class="form-label">Application No</label>
+                        <input type="text" name="t1" value="{{ i.request_id }}" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Request Date</label>
+                        <input type="text" name="t2" value="{{ i.request_date|date:'Y-m-d' }}" class="form-control" readonly>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Request Status</label>
+                        <div class="border rounded p-2">
+                            <label class="me-3">
+                                <input type="radio" name="t3" value="Accepted"> Accepted
+                            </label>
+                            <label>
+                                <input type="radio" name="t3" value="Rejected"> Rejected
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Adoption Status</label>
+                        <input type="text" name="t4" value="Pending" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary px-4">
+                        <i class="fa fa-check-circle"></i> Submit
+                    </button>
+                </div>
+
+            </form>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+
+<footer class="site-footer mt-5">
+    <div class="footer-widgets py-5" style="background: #f1f4f7;">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <h3 class="fw-bold mb-3">Contact Us</h3>
+                    <p><i class="fa fa-phone"></i> +45 677 8993000 223</p>
+                    <p><i class="fa fa-envelope"></i> office@template.com</p>
+                    <p><i class="fa fa-map-marker"></i> Main St, Los Angeles, CA</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bar py-3 bg-dark text-white text-center">
+        <p class="m-0">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+            All rights reserved | OrphanAssest
+        </p>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>

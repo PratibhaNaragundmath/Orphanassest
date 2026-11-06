@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Donation History</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body class="bg-light">
+
+<div class="container my-5">
+    <h2 class="text-center mb-4 text-primary fw-bold">Your Donation History</h2>
+
+    {% if data %}
+    <div class="table-responsive shadow bg-white rounded p-3">
+        <table class="table table-bordered text-center">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Amount</th>
+                    <th>Things</th>
+                    <th>Date</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data %}
+                <tr>
+                    <td>{{ d.donation_amt }}</td>
+                    <td>{{ d.donation_things }}</td>
+                    <td>{{ d.donation_date }}</td>
+                    <td>{{ d.purpose }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p class="text-center text-muted fs-5 mt-4">No donations made yet.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Child Adoption</title>
+</head>
+<body>
+
+<form method="post" action="{% url 'donationInfo_db'%}">
+    {% csrf_token %}
+    <table border="1" width="400" height="400">
+
+        {% for i in userdict %}
+        <input type="hidden" name="id" value="{{i.id}}">
+          <tr>
+            <td>Donation_Amt</td>
+            <td><input type="text" name="t2" value="{{i.Donation_Amt}}"></td>
+          </tr>
+
+          <tr>
+            <td>Donation_things</td>
+            <td><input type="text" name="t3" value="{{i.Donation_things}}"></td>
+          </tr>
+
+          <tr>
+            <td>purpes</td>
+            <td><input type="text" name="t5" value="{{i.purpes}}"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit"></td>
+          </tr>
+        {% endfor %}
+    </table>
+</form>
+
+</body>
+</html>

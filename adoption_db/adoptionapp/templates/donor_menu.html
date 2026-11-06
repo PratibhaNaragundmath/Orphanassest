@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+    <span class="navbar-brand fw-bold text-warning fs-1 fw-bold">Orphan Assist</span>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#donorMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="donorMenu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'donor_home' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'donationinfo' %}">Give Donation</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'OrphanageInfo_view_d' %}">Orphanage Info</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'donation_history' %}">Donation History</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'changepass' %}">Change Password</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'index' %}">Logout</a></li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,108 @@
+{% load static %}
+{% include 'parent_header.html' %}
+
+<style>
+    .page-title {
+        font-weight: 800;
+        color: #0056b3;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .surity-card {
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .table thead {
+        background: linear-gradient(90deg, #0056b3, #0096ff);
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .upload-btn {
+        padding: 5px 12px;
+        font-size: 13px;
+        border-radius: 6px;
+        background: #28a745;
+        color: #fff !important;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .upload-btn:hover {
+        background: #218838;
+        text-decoration: none;
+    }
+
+    .empty-msg {
+        text-align: center;
+        padding: 40px;
+        color: #777;
+        font-size: 18px;
+        font-weight: 500;
+    }
+</style>
+
+<div class="container py-5">
+
+    <h2 class="text-center page-title mb-4">
+        <i class="fa fa-file"></i> Surity Details
+    </h2>
+
+    <div class="surity-card p-4">
+
+        {% if userdict %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Application No</th>
+                            <th>Surity Amount</th>
+                            <th>Surity Duration</th>
+                            <th>Terms & Conditions</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for i in userdict %}
+                        <tr>
+                            <td class="text-center fw-bold">{{ i.ApplnNo }}</td>
+                            <td class="text-center">₹ {{ i.Surity_amount }}</td>
+                            <td class="text-center">{{ i.Surity_duration }}</td>
+                            <td style="max-width:300px; white-space:normal;">
+                                {{ i.terms_conditions }}
+                            </td>
+                            <td class="text-center">
+                                <a href="{% url 'upload_court_docs' i.ApplnNo %}" class="upload-btn">
+                                    <i class="fa fa-upload"></i> Upload Docs
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% else %}
+            <p class="empty-msg">
+                <i class="fa fa-info-circle"></i> No Surity Details Found.
+            </p>
+        {% endif %}
+
+    </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+  <div class="footer-bar bg-secondary py-3 text-center">
+    <div class="container">
+      <p class="m-0">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script>
+        All rights reserved | OrphanAssest
+      </p>
+    </div>
+  </div>
+</footer>

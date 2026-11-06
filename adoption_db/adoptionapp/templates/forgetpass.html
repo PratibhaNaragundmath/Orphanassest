@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="{% static 'css/elegant-fonts.css' %}">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+
+
+</head>
+<body class="single-page about-page">
+<header class="bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between">
+        <a href="{% url 'index' %}" class="text-white text-decoration-none">🏠 Home</a>
+        <a href="{% url 'login' %}" class="text-white text-decoration-none">🔑 Login</a>
+    </div>
+</header>
+
+
+
+    <div class="welcome-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 order-2 order-lg-1">
+                    <div class="welcome-content">
+                        <header class="entry-header">
+                            <h2 class="entry-title">Forgot Password</h2>
+                        </header><!-- .entry-header -->
+
+                        <div class="entry-content mt-5">
+                            <p>
+<form name="form1" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <!-- Username Row -->
+        <div class="row mb-3">
+            <div class="col-md-4 text-end">
+                <label for="t1" class="col-form-label">Username</label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" name="t1" id="t1" class="form-control" placeholder="Enter Username">
+            </div>
+        </div>
+
+        <!-- Submit Button Row -->
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <input type="submit" name="b1" id="b1" class="btn btn-primary" value="Submit">
+            </div>
+        </div>
+    </div>
+</form>
+
+ </p>
+                        </div><!-- .entry-content -->
+
+                        <!-- .entry-footer -->
+                    </div><!-- .welcome-content -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-lg-6 order-1 order-lg-2">
+                    <img src="{% static 'images/welcome.jpg'%}" alt="welcome">
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .home-page-icon-boxes -->
+
+
+    <footer class="site-footer">
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+
+
+
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+                        <div class="foot-contact">
+                            <h2>Contact</h2>
+
+                            <ul>
+                                <li><i class="fa fa-phone"></i><span>+45 677 8993000 223</span></li>
+                                <li><i class="fa fa-envelope"></i><span>office@template.com</span></li>
+                                <li><i class="fa fa-map-marker"></i><span>Main Str. no 45-46, b3, 56832, Los Angeles, CA</span></li>
+                            </ul>
+                        </div><!-- .foot-contact -->
+
+                       <!-- .search-widget -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-widgets -->
+
+        <div class="footer-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> OrphanAssest | All rights reserved
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-bar -->
+    </footer><!-- .site-footer -->
+
+     <script type='text/javascript' src='{% static 'js/jquery.js'%}'></script>
+    <script type='text/javascript' src='{% static 'js/jquery.collapsible.min.js'%}'></script>
+    <script type='text/javascript' src='{% static 'js/swiper.min.js'%}'></script>
+    <script type='text/javascript' src='{% static 'js/jquery.countdown.min.js'%}'></script>
+    <script type='text/javascript' src='{% static 'js/circle-progress.min.js'%}'></script>
+    <script type='text/javascript' src='{% static 'js/jquery.countTo.min.js'%}'></script>
+    <script type='text/javascript' src='{% static 'js/jquery.barfiller.js'%}'></script>
+    <script type='text/javascript' src='{% static 'js/custom.js'%}'></script>
+
+</body>
+</html>

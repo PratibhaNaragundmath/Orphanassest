@@ -1,0 +1,132 @@
+{% load static %}
+{% include 'parent_header.html' %}
+
+<style>
+  body {
+      background: #f6f8fc;
+      font-family: 'Segoe UI', sans-serif;
+  }
+
+  .status-card {
+      border: none;
+      border-radius: 15px;
+      background: #ffffff;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .status-card h2 {
+      font-weight: 800;
+      color: #0d6efd;
+  }
+
+  .status-card label {
+      font-weight: 600;
+  }
+
+  .hero-img {
+      position: relative;
+  }
+
+  .hero-img img {
+      border-radius: 15px;
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .hero-caption {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+  }
+
+  .btn-primary {
+      font-weight: 700;
+      padding: 10px;
+      border-radius: 8px;
+  }
+</style>
+
+<div class="welcome-wrap py-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+
+      <!-- LEFT: Form Section -->
+      <div class="col-12 col-lg-6 order-2 order-lg-1">
+        <div class="status-card p-4">
+
+          <header class="text-center mb-4">
+            <h2>
+              <i class="fa-solid fa-children"></i>
+              Home Visit & Counselling Status
+            </h2>
+            <p class="text-muted">
+              Check your adoption home-visit approval details
+            </p>
+          </header>
+
+          {% if msg %}
+          <div class="alert alert-danger text-center fw-bold">
+            <i class="fa fa-exclamation-circle"></i> {{ msg }}
+          </div>
+          {% endif %}
+
+          <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label class="form-label">Application Number</label>
+              <input type="text" name="t1" class="form-control"
+                placeholder="Enter your application number" required>
+            </div>
+
+            <div class="d-grid mt-3">
+              <button class="btn btn-primary">
+                <i class="fa fa-search"></i> Check Status
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT: Emotional Adoption Image -->
+      <div class="col-12 col-lg-6 order-1 order-lg-2 text-center mb-4 mb-lg-0">
+        <div class="hero-img">
+          <img src="{% static 'images/welcome.jpg' %}"
+               class="img-fluid"
+               alt="Adoption image">
+
+          <div class="hero-caption">
+            Every child deserves a loving home 💛
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer bg-dark text-white mt-5">
+  <div class="footer-bar bg-secondary py-3 text-center">
+    <div class="container">
+      <p class="m-0">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script>
+        All rights reserved | OrphanAssest
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>

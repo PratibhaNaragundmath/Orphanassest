@@ -1,0 +1,96 @@
+{% load static %}
+{% include 'admin_header.html' %}
+<div class="container my-4">
+    <div class="text-center">
+        <h2 class="fw-bold text-primary">Update Child Information</h2>
+        <p class="text-muted">Modify age, gender, blood group, and other details</p>
+    </div>
+</div>
+
+<!-- FORM SECTION -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h4 class="mb-4"><i class="fa fa-child"></i> Child Details</h4>
+
+                <form method="post" action="{% url 'babyinfo_db' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for i in userdict %}
+                    <input type="hidden" name="id" value="{{ i.id }}">
+
+                    <!-- AGE -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Age</label>
+                        <input type="text" name="t1" value="{{ i.year }}" required
+                               class="form-control form-control-lg"
+                               placeholder="Enter age">
+                    </div>
+
+                    <!-- GENDER -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Gender</label>
+                        <input type="text" name="r1" value="{{ i.gender }}" required
+                               class="form-control form-control-lg"
+                               placeholder="Male / Female">
+                    </div>
+
+                    <!-- BLOOD GROUP -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Blood Group</label>
+                        <input type="text" name="t3" value="{{ i.bloodgroup }}"
+                               class="form-control form-control-lg"
+                               placeholder="e.g., O+, A-, B+">
+                    </div>
+
+                    <!-- PHOTO -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Photo</label>
+                        <input type="file" name="myfile" class="form-control form-control-lg">
+                    </div>
+
+                    <!-- DOB -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Date of Birth</label>
+                        <input type="date" name="t4" value="{{ i.dob }}"
+                               required class="form-control form-control-lg">
+                    </div>
+
+                    <!-- DOJ -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Date of Joining</label>
+                        <input type="date" name="t5" value="{{ i.doj }}"
+                               required class="form-control form-control-lg">
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                            <i class="fa fa-save"></i> Update
+                        </button>
+                    </div>
+
+                    {% endfor %}
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- IMAGE -->
+        <div class="col-lg-5 text-center mt-4 mt-lg-0">
+            <img src="{% static 'images/welcome.jpg' %}" class="img-fluid rounded shadow" alt="Child">
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white py-3 mt-5">
+    <div class="container text-center">
+        <p class="mb-0">© <script>document.write(new Date().getFullYear());</script> Child Adoption. All Rights Reserved</p>
+    </div>
+</footer>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+{% load static %}
+{% include 'admin_header.html' %}
+
+<div class="container my-5">
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0"><i class="fa fa-hand-holding-heart"></i> Charity / Donor List</h4>
+            <a href="{% url 'charityinfo' %}" class="btn btn-light btn-sm"><i class="fa fa-user-plus"></i> Add Donor</a>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover mb-0">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Contact No</th>
+                            <th>Email</th>
+                            <th>Occupation</th>
+                            <th>Volunteer</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in userdict %}
+                        <tr>
+                            <td>{{ i.Name }}</td>
+                            <td>{{ i.Address }}</td>
+                            <td>{{ i.Contact_No }}</td>
+                            <td>{{ i.Email }}</td>
+                            <td>{{ i.Occupation }}</td>
+
+                            <td class="text-center">
+                                {% if i.is_volunteer %}
+                                    <span class="badge bg-success">Volunteer</span><br>
+                                    <small class="text-muted">{{ i.volunteer_role }}</small>
+                                {% else %}
+                                    <span class="badge bg-secondary">Not Volunteer</span>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center">
+
+                                <!-- Make Volunteer Button (opens modal) -->
+                                <button
+    class="btn btn-sm btn-warning px-3 mb-1"
+    data-bs-toggle="modal"
+    data-bs-target="#volunteerModal"
+    data-id="{{ i.id }}"
+    data-name="{{ i.Name }}">
+    <i class="fa fa-user-shield"></i> Make Volunteer
+</button>
+
+
+                                <!-- Give Reward Button (only visible if volunteer) -->
+                                <button
+                                    class="btn btn-sm btn-info px-3 mb-1"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#rewardModal"
+                                    data-id="{{ i.id }}"
+                                    data-name="{{ i.Name }}">
+                                    <i class="fa fa-gift"></i> Give Reward
+                                </button>
+
+                                <!-- View Rewards -->
+                                <a href="{% url 'view_rewards' i.id %}" class="btn btn-sm btn-primary mb-1">
+                                    <i class="fa fa-list"></i> Rewards
+                                </a>
+
+                                <!-- delete -->
+                                <a href="{% url 'CharityInfo_del' i.id %}" class="btn btn-sm btn-danger px-3 mb-1" onclick="return confirm('Are you sure?');">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-3">No charity records found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Volunteer Modal -->
+<div class="modal fade" id="volunteerModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title"><i class="fa fa-user-shield"></i> Assign as Volunteer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form method="POST" action="{% url 'make_volunteer' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+            <input type="hidden" id="volunteer_id" name="volunteer_id">
+            <p class="fw-bold">Assign <span class="text-primary" id="volunteer_name"></span> as a volunteer?</p>
+            <div class="mb-3">
+                <label class="form-label">Volunteer Role</label>
+                <input type="text" name="role" id="volunteer_role" class="form-control" placeholder="Ex: Field Volunteer" required>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Confirm</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Reward Modal -->
+<div class="modal fade" id="rewardModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title"><i class="fa fa-gift"></i> Give Reward</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form method="POST" action="{% url 'give_reward' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+            <input type="hidden" id="reward_id" name="reward_id">
+            <p>Giving reward to: <strong class="text-primary" id="reward_name"></strong></p>
+
+            <div class="mb-3">
+                <label class="form-label">Reward Title</label>
+                <input type="text" name="reward_title" class="form-control" placeholder="Ex: Best Volunteer" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Points</label>
+                <input type="number" name="reward_points" class="form-control" value="10" min="0" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="reward_description" class="form-control" rows="3" placeholder="Short appreciation note"></textarea>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit Reward</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-dark text-white mt-4">
+    <div class="footer-bar bg-secondary py-3 text-center">
+        <div class="container">
+            <p class="m-0">&copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | Janani</p>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+    // Volunteer modal: fill fields
+    var volunteerModal = document.getElementById('volunteerModal');
+    volunteerModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var donorId = button.getAttribute('data-id');
+        var donorName = button.getAttribute('data-name');
+
+        document.getElementById('volunteer_id').value = donorId;
+        document.getElementById('volunteer_name').textContent = donorName;
+        document.getElementById('volunteer_role').value = "Field Volunteer"; // default
+    });
+
+    // Reward modal: fill fields
+    var rewardModal = document.getElementById('rewardModal');
+    rewardModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var donorId = button.getAttribute('data-id');
+        var donorName = button.getAttribute('data-name');
+
+        document.getElementById('reward_id').value = donorId;
+        document.getElementById('reward_name').textContent = donorName;
+    });
+</script>

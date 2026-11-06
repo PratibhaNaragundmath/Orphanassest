@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Child Adoption</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <!-- Leaflet Search CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .entry-title {
+            color: #FF6600;
+            font-weight: 700;
+        }
+
+        .content-section {
+            width: 40%;
+        }
+
+        .map-section {
+            width: 60%;
+            padding-left: 20px;
+        }
+
+        .map-container {
+            height: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 992px) {
+            .content-section, .map-section {
+                width: 100%;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+{% include 'manager_header.html' %}
+
+<div class="container-fluid py-4">
+    <div class="row">
+
+        <!-- LEFT SIDE CONTENT -->
+        <div class="content-section">
+            <div class="bg-white shadow p-3 rounded">
+
+                <header class="entry-header text-center mb-4">
+                    <h2 class="entry-title">Communication Details</h2>
+                </header>
+
+                <p>
+                    <a href="{{ request.META.HTTP_REFERER|default:'/' }}" class="go-back-btn text-danger fw-bold">
+                        <i class="fa fa-arrow-left"></i> Go Back
+                    </a>
+                </p>
+
+                {% for i in data %}
+                <div class="card mb-3 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="text-primary">{{ i.city }}</h5>
+                        <p><strong>Address:</strong> {{ i.address }}</p>
+                        <p><strong>Mobile:</strong> {{ i.contact }}</p>
+                        <p><strong>Pincode:</strong> {{ i.pincode }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE MAP -->
+        <div class="map-section">
+            <div id="mainMap" class="map-container shadow"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer bg-dark text-white mt-5">
+    <div class="footer-bar bg-secondary py-3 text-center">
+        <p class="m-0">
+            © <script>document.write(new Date().getFullYear());</script> All rights reserved | Janani
+        </p>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Leaflet Geocoder (Search Box) -->
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<script>
+    const locationData = [
+        {% for i in data %}
+        "{{ i.address }}, {{ i.city }}",
+        {% endfor %}
+    ];
+
+    let map = L.map("mainMap").setView([20.5937, 78.9629], 5); // Center of India
+
+    // Add OpenStreetMap Tiles
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 15,
+    }).addTo(map);
+
+    let markers = [];
+    let latlngs = [];
+
+    // Add search box
+    L.Control.geocoder().addTo(map);
+
+    // Convert address to coordinates
+    async function getCoords(address) {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.length > 0) {
+            return [data[0].lat, data[0].lon];
+        }
+        return null;
+    }
+
+    // Load all markers + route
+    async function loadAllMarkers() {
+        for (let addr of locationData) {
+            const coords = await getCoords(addr);
+            if (!coords) continue;
+
+            const marker = L.marker(coords).addTo(map).bindPopup(addr);
+            markers.push(marker);
+            latlngs.push(coords);
+        }
+
+        if (latlngs.length > 1) {
+            // Draw route line
+            L.polyline(latlngs, { color: "blue", weight: 4 }).addTo(map);
+        }
+
+        if (latlngs.length > 0) {
+            map.fitBounds(latlngs);
+        }
+    }
+
+    loadAllMarkers();
+</script>
+
+</body>
+</html>

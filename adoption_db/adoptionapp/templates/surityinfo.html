@@ -1,0 +1,134 @@
+{% load static %}
+{% include 'manager_header.html' %}
+
+<style>
+    .card-custom {
+        border-radius: 18px;
+        overflow: hidden;
+        border: none;
+    }
+
+    .header-gradient {
+        background: linear-gradient(90deg, #0056b3, #007bff);
+        color: white;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .header-gradient h3 {
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .form-section {
+        padding: 35px 40px;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-control, .form-select, textarea {
+        border-radius: 10px;
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+    }
+
+    .btn-submit {
+        width: 100%;
+        border-radius: 10px;
+        padding: 12px;
+        background: #0056b3;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .btn-submit:hover {
+        background: #003f86;
+        color: #fff;
+    }
+
+    .side-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0 18px 18px 0;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="card shadow-lg card-custom">
+
+        <!-- Header -->
+        <div class="header-gradient">
+            <h3><i class="fa fa-file-text"></i> Surity Information</h3>
+        </div>
+
+        <div class="row g-0">
+
+            <!-- Form Section -->
+            <div class="col-lg-7">
+                <div class="form-section">
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-4">
+                            <label class="form-label">Application Number</label>
+                            <input type="text" name="t1" class="form-control" value="{{ applno }}" required readonly>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Surity Amount</label>
+                            <input type="text" name="t2" class="form-control" required placeholder="Enter surity amount">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Surity Duration</label>
+                            <input type="text" name="t3" class="form-control" required placeholder="Enter duration">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Terms & Conditions</label>
+                            <textarea name="t4" class="form-control" rows="4" placeholder="Write terms & conditions..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">Submit Surity Details</button>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- Side Image -->
+            <div class="col-lg-5 d-none d-lg-block">
+                <img src="{% static 'images/welcome.jpg' %}" class="side-image" alt="Welcome">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer mt-5">
+    <div class="footer-widgets py-4" style="background: #f1f4f7;">
+        <div class="container">
+            <h4 class="fw-bold mb-3">Contact</h4>
+            <p><i class="fa fa-phone"></i> +45 677 8993000 223</p>
+            <p><i class="fa fa-envelope"></i> office@template.com</p>
+            <p><i class="fa fa-map-marker"></i> Main St, Los Angeles, CA</p>
+        </div>
+    </div>
+
+    <div class="footer-bar py-3 bg-dark text-white text-center">
+        <p class="m-0">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+            All rights reserved | OrphanAssest
+        </p>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+

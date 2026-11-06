@@ -1,0 +1,289 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Orphan Assist</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff7f0;
+        }
+
+        /* HERO SECTION */
+        .about-hero {
+            background: linear-gradient(135deg, #ff9a57, #ff6f3c);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .about-hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: auto;
+            margin-top: 15px;
+        }
+
+        /* TITLES */
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .section-subtitle {
+            color: #ff6f3c;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        /* CARDS */
+        .info-card {
+            border-radius: 18px;
+            padding: 35px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card img {
+            width: 70px;
+            margin-bottom: 20px;
+        }
+
+        .stats-box {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .stats-box:hover {
+            transform: translateY(-4px);
+        }
+
+        .stats-number {
+            font-size: 40px;
+            color: #ff6f3c;
+            font-weight: 800;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+            style="background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);">
+
+            <div class="container">
+
+                <a class="navbar-brand fw-bold text-warning" href="{% url 'index' %}"
+                    style="font-size:30px; font-weight:bold;">
+                    <span class="fs-1">Orphan Assist</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <ul class="navbar-nav ms-auto justify-content-end">
+
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="{% url 'about' %}">About</a>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white btn btn-danger" href="{% url 'charityinfo' %}">Donor Reg</a>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white btn btn-danger" href="{% url 'login' %}">Login</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="about-hero">
+        <h1>About <span style="color:#ffe2d4;">Orphan Assist</span></h1>
+        <p>
+            OrphanAssist is a compassionate platform dedicated to connecting children with loving families.
+            Our mission is to ensure transparency, trust, and dignity throughout every adoption journey.
+        </p>
+    </section>
+
+    <!-- ABOUT DETAILS -->
+    <div class="container py-5">
+
+        <!-- WHO WE ARE -->
+        <div class="text-center mb-5">
+            <h2 class="section-title">Who We Are</h2>
+            <p class="section-subtitle">A step toward giving every child a loving home</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048949.png">
+                    <h4 class="fw-bold">Our Mission</h4>
+                    <p>
+                        To ensure that every child receives love, care, and security by
+                        connecting them with compassionate parents.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+                    <h4 class="fw-bold">Our Vision</h4>
+                    <p>
+                        To build a transparent, secure, and emotionally supportive adoption ecosystem
+                        guided by technology and trust.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- IMPACT -->
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Impact</h2>
+            <p class="section-subtitle">Making a difference, one child at a time</p>
+        </div>
+
+        <div class="row g-4 text-center mb-5">
+            <div class="col-6 col-lg-3">
+                <div class="stats-box">
+                    <div class="stats-number">120+</div>
+                    <p>Children Supported</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <div class="stats-box">
+                    <div class="stats-number">85+</div>
+                    <p>Successful Adoptions</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <div class="stats-box">
+                    <div class="stats-number">40+</div>
+                    <p>Verified Parents</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <div class="stats-box">
+                    <div class="stats-number">10+</div>
+                    <p>Years of Service</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEAM -->
+        <div class="text-center mb-5">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">Dedicated hearts building brighter futures</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="team-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219986.png">
+                    <h5 class="fw-bold">Ananya Sharma</h5>
+                    <p class="text-muted">Adoption Coordinator</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="team-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
+                    <h5 class="fw-bold">Rohan Mehta</h5>
+                    <p class="text-muted">Child Welfare Officer</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="team-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/921/921071.png">
+                    <h5 class="fw-bold">Dr. Kavya Rao</h5>
+                    <p class="text-muted">Child Psychologist</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer bg-dark text-white mt-5">
+        <div class="footer-bar bg-secondary py-3 text-center">
+            <div class="container">
+                <p class="m-0">
+                    &copy;<script>document.write(new Date().getFullYear());</script> OrphanAssest — All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

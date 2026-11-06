@@ -1,0 +1,84 @@
+{% load static %}
+{% include 'manager_header.html'%}
+
+<div class="welcome-wrap">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="welcome-content">
+          <header class="entry-header text-center mb-4">
+            <h2 class="entry-title">Court Documents Information</h2>
+          </header>
+
+          <div class="entry-content mt-4">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center align-middle">
+                  <thead class="table-primary">
+                    <tr>
+                      <th>Application No</th>
+                      <th>Court Certificate</th>
+                      <th>Caste Certificate</th>
+                      <th>Aadhar Certificate</th>
+                      <th>Address Proof</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for u in userdict %}
+                    <tr>
+                      <td>{{ u.user_id }}</td>
+                      <td>
+                        <a href="{{ u.court_certi.url }}" class="btn btn-sm btn-outline-info" target="_blank">
+                          View File
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{ u.caste.url }}" class="btn btn-sm btn-outline-info" target="_blank">
+                          View File
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{ u.aadhar.url }}" class="btn btn-sm btn-outline-info" target="_blank">
+                          View File
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{ u.address_proof.url }}" class="btn btn-sm btn-outline-info" target="_blank">
+                          View File
+                        </a>
+                      </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="5" class="text-muted">No court documents uploaded yet.</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+  <div class="footer-bar bg-secondary py-3 text-center">
+    <div class="container">
+      <p class="m-0">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script>
+        All rights reserved | OrphanAssist
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap + FontAwesome -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/custom.js' %}"></script>

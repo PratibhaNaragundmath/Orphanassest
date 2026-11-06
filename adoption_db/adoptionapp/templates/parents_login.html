@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusConnect Login</title>
+
+  <!-- Bootstrap  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body { background: linear-gradient(to bottom right, #e3f2fd, #ede7f6); height: 100vh; }
+    .login-card { border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .left-box { background: #0066ff; border-radius: 20px 0 0 20px; color: white; padding: 40px; }
+    .right-box { padding: 40px; }
+    .login-btn { width: 100%; background: #0066ff; border: none; }
+    .rule-card, .additional-rules, .legal-notice { margin-bottom: 12px; padding: 12px; border-radius: 8px; }
+    .rules-scroll { max-height: 400px; overflow-y: auto; background: rgba(0,0,0,0.02); padding: 20px; border-radius: 8px; }
+    .additional-rules { background: rgba(224, 122, 95, 0.1); border: 1px solid rgba(224, 122, 95, 0.2); }
+    .legal-notice { background: #f8f9fa; }
+    #rulesSection, #loginSection { display: none; }
+    #rulesSection.active, #loginSection.active { display: block; }
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary px-4">
+    <a class="navbar-brand text-white fs-1 fw-bold" href="#">Orphan Assist</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'index' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'about' %}">About Us</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'reg' %}">Signup</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="">Login</a></li>
+    </ul>
+    </div>
+</nav>
+
+<!-- STEP INDICATOR -->
+<div class="d-flex align-items-center justify-content-center gap-2 my-4">
+  <div class="step step-active" id="step1Indicator">1</div>
+  <span>Accept Rules</span>
+  <span>—</span>
+  <div class="step step-inactive" id="step2Indicator">2</div>
+  <span class="text-muted">Login</span>
+</div>
+
+<!-- ================= RULES SECTION ================= -->
+<div class="container my-4 active" id="rulesSection">
+  <div class="card">
+    <div class="card-body">
+
+      <h4 class="text-center mb-3">Child Adoption Rules & Guidelines</h4>
+
+      <div class="rules-scroll mb-4">
+
+        <!-- Main Rules -->
+        <div class="rule-card">
+          <h6>1. Eligibility Requirements</h6>
+          <p>Prospective adoptive parents must be at least 25 years of age and at least 21 years older than the child being adopted. Both married couples and single individuals may apply.</p>
+        </div>
+
+        <div class="rule-card">
+          <h6>2. Background Verification</h6>
+          <p>All applicants must undergo comprehensive background checks including criminal history, child abuse registry checks, and reference verification.</p>
+        </div>
+
+        <div class="rule-card">
+          <h6>3. Home Study Requirement</h6>
+          <p>A licensed social worker will conduct a thorough home study to assess the suitability of your home environment, living conditions, and financial stability.</p>
+        </div>
+
+        <div class="rule-card">
+          <h6>4. Documentation</h6>
+          <p>Applicants must provide valid identification, proof of income, medical certificates, marriage certificate (if applicable), and any other required documents.</p>
+        </div>
+
+        <div class="rule-card">
+          <h6>5. Waiting Period</h6>
+          <p>There is a mandatory waiting period of at least 6 months from application to placement for proper assessment and matching.</p>
+        </div>
+
+        <div class="rule-card">
+          <h6>6. Post-Adoption Commitment</h6>
+          <p>Adoptive parents agree to post-placement visits and follow-up assessments for a minimum of 2 years.</p>
+        </div>
+
+        <!-- Additional Rules -->
+        <div class="additional-rules">
+          <h6>Additional Commitments</h6>
+          <ul class="mb-0">
+            <li>You must attend all mandatory pre-adoption counseling sessions.</li>
+            <li>You agree to maintain confidentiality regarding the child's biological family.</li>
+            <li>You understand that the child's welfare is the paramount consideration.</li>
+            <li>You agree to respect the child's cultural, religious, and ethnic heritage.</li>
+            <li>You acknowledge that providing false information is grounds for rejection.</li>
+            <li>You understand that adoption is irrevocable once finalized by the court.</li>
+            <li>You agree to notify the agency of any significant changes during the process.</li>
+            <li>You commit to ensuring the child has access to education and healthcare.</li>
+            <li>Parents must be physically, mentally, emotionally, and financially fit.</li>
+            <li>Adoption is legal only after court approval; private or direct adoption is prohibited.</li>
+            <li>All applicants must undergo background checks and a home study assessment.</li>
+            <li>Parents must submit all required documents, including ID, income proof, and medical certificates.</li>
+            <li>There is a mandatory waiting period before child placement to allow proper assessment and matching.</li>
+            <li>Parents must attend pre-adoption counseling sessions.</li>
+            <li>Adopted children must be treated equally to biological children, with access to education, healthcare, and a safe environment.</li>
+            <li>Parents must maintain confidentiality, notify the agency of significant changes, and understand that adoption is irrevocable once finalized by the court.</li>
+
+          </ul>
+        </div>
+
+        <!-- Legal Notice -->
+        <div class="legal-notice">
+          <p class="mb-0"><strong>Legal Notice:</strong> By accepting these terms, you acknowledge that you have read, understood, and agree to comply with all rules outlined above. Violation may result in termination of your application.</p>
+        </div>
+
+      </div>
+
+      <!-- Accept Checkbox -->
+      <div class="mt-3">
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="acceptRules">
+          <label class="form-check-label">
+            I have read and understood all the adoption rules and guidelines outlined above. I agree to comply with all requirements and understand that providing false information may disqualify my application.
+          </label>
+        </div>
+        <button class="btn btn-primary w-100" id="continueBtn" disabled onclick="showLogin()">
+          Continue to Login
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= LOGIN SECTION ================= -->
+<div id="loginSection">
+  <div class="container d-flex justify-content-center align-items-center my-5">
+    <div class="row login-card bg-white w-75 shadow-lg">
+
+      <div class="col-md-6 left-box text-center">
+        <h2>Welcome to <br> OrphanConnect</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/5487/5487994.png" width="160">
+      </div>
+
+      <div class="col-md-6 right-box">
+        <h3>Login to Your Account</h3>
+
+        <form method="post">
+          {% csrf_token %}
+          <input type="email" class="form-control mb-3" name="t1" placeholder="Email">
+          <input type="password" class="form-control mb-3" name="t2" placeholder="Password">
+          <button class="btn btn-primary w-100 login-btn">Login</button>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  document.getElementById("acceptRules").addEventListener("change", function () {
+    document.getElementById("continueBtn").disabled = !this.checked;
+  });
+
+  function showLogin() {
+    document.getElementById("rulesSection").classList.remove("active");
+    document.getElementById("loginSection").classList.add("active");
+
+    document.getElementById("step1Indicator").innerHTML = "✓";
+    document.getElementById("step2Indicator").classList.remove("step-inactive");
+    document.getElementById("step2Indicator").classList.add("step-active");
+  }
+</script>
+
+</body>
+</html>

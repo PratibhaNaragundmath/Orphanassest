@@ -1,0 +1,102 @@
+{% load static %}
+{% include 'manager_header.html'%}
+
+<style>
+    body {
+        background: #f4f7fa;
+    }
+    .info-card {
+        background: #ffffff;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .table thead {
+        background: #0d6efd;
+        color: white;
+        border-radius: 8px;
+    }
+    .table tbody tr:hover {
+        background: #f1f5ff;
+        transition: 0.3s;
+    }
+    .baby-photo {
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .baby-photo:hover {
+        transform: scale(1.15);
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    }
+</style>
+
+<div class="welcome-wrap py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+
+        <div class="info-card">
+          <h2 class="text-center text-primary mb-4">
+            <i class="fa fa-baby"></i> Child Information
+          </h2>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle text-center">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Child Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>DOB</th>
+                  <th>Joining Date</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for i in userdict %}
+                <tr>
+                  <td>
+                    <img src="{{ i.Photo.url }}"
+                         alt="{{ i.childname }}"
+                         width="90" height="90"
+                         class="baby-photo">
+                  </td>
+                  <td class="fw-bold">{{ i.childname }}</td>
+                  <td>{{ i.year }} Years</td>
+                  <td>{{ i.gender }}</td>
+                  <td>{{ i.dob }}</td>
+                  <td>{{ i.doj }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="6" class="text-muted">No child information available</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+  <div class="footer-bar bg-secondary py-3 text-center">
+    <div class="container">
+      <p class="m-0">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script>
+        All rights reserved | OrphanAssest
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>

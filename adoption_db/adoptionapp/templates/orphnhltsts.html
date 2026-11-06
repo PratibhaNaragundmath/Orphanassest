@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Child Adoption</title>
+</head>
+<body>
+
+<form method="post">
+    {% csrf_token %}
+    <table border="1" width="400" height="400">
+        <tr>
+            <td>Member_id</td>
+            <td><input type="text" name="t1"></td></tr>
+        <tr>
+            <td>Health_problems</td>
+            <td><input type="text" name="t2"></td>
+        </tr>
+
+        <tr>
+            <td>last_checkup_date</td>
+            <td><input type="date" name="t3"></td>
+        </tr>
+         <tr>
+            <td>Previous_checkupdate</td>
+            <td><input type="date" name="t4"></td>
+        </tr>
+         <tr>
+            <td></td>
+            <td><input type="submit"></td>
+        </tr>
+
+    </table>
+</form>
+
+
+</body>
+</html>

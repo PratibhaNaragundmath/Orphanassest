@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption - View Child Info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+    <style>
+        header h1 {
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #FF6600 !important;
+        }
+        .table thead {
+            background-color: #007BFF;
+            color: white;
+        }
+        .action-links a {
+            margin: 0 5px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<header class="site-header ">
+    <div class="container-fluid"
+     style="background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);">
+
+    <div class="container d-flex justify-content-between align-items-center py-3">
+
+        <!-- Title -->
+        <h1 class="m-0 text-white">Orphan Assist</h1>
+
+        <!-- Menu -->
+        <nav class="ms-auto">
+            <ul class="navbar-nav d-flex flex-row gap-3 m-0 p-0 text-end">
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'admin_home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'babyinfo' %}">Add Child</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'orphanageinfo' %}">Add Orphanage</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'BabyInfo_view' %}">View Child Info</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'OrphanageInfo_view' %}">View Orphanage Info</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'CharityInfo_view' %}">View Donor Info</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</div>
+
+</header>
+
+<div class="container">
+    <h2 class="mb-4">Child Information</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead>
+                <tr>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Child Name</th>
+                    <th>Blood Group</th>
+                    <th>Photo</th>
+                    <th>Date of Birth</th>
+                    <th>Date of Joining</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in userdict %}
+                <tr>
+                    <td>{{ i.year }}</td>
+                    <td>{{ i.gender }}</td>
+                    <td>{{ i.childname }}</td>
+                    <td>{{ i.bloodgroup }}</td>
+                    <td>
+                        {% if i.Photo %}
+                        <img src="{{ i.Photo.url }}" alt="Child Photo" width="80" height="80" class="rounded">
+                        {% else %}
+                        <span class="text-muted">No Photo</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ i.dob }}</td>
+                    <td>{{ i.doj }}</td>
+                    <td class="action-links">
+                        <a href="{% url 'babyinfo_del' i.id %}" class="text-danger" onclick="return confirm('Are you sure you want to delete this record?');"><i class="fa fa-trash"></i> </a>
+                        <a href="{% url 'BabyInfo_update' i.id %}" class="text-primary"><i class="fa fa-edit"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer class="site-footer bg-light py-3 mt-5">
+    <div class="container text-center">
+        <p class="m-0">&copy; <script>document.write(new Date().getFullYear());</script> Child Adoption. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

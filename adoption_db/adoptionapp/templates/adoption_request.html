@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption - Request Form</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #fff7f0, #ffe4d1);
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 14px;
+            padding: 35px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff6600;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        .btn-submit {
+            background: #ff6600;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-submit:hover {
+            background: #e15700;
+            color: #fff;
+        }
+
+        .btn-reset {
+            background: #0ca678;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-reset:hover {
+            background: #087a59;
+            color: #fff;
+        }
+
+        .right-img {
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .info-badge {
+            background: #ff6600;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+{% include 'parent_header.html' %}
+
+<div class="container py-5">
+    <div class="row align-items-center">
+
+        <!-- LEFT SECTION (FORM) -->
+        <div class="col-lg-6 mb-5">
+
+            <span class="info-badge">
+                <i class="fa fa-heart"></i> Adoption Registration
+            </span>
+
+            <h2 class="section-title mt-3">Request to Adopt a Child</h2>
+            <p class="text-muted mb-4">
+                Please fill in the details below to submit your adoption request.
+            </p>
+
+            <div class="form-card">
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label>Request ID</label>
+                        <input type="text" class="form-control" name="t1" value="{{ request_id }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Request By</label>
+                        <input type="text" class="form-control" name="t2" value="{{ username }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Request Date</label>
+                        <input type="text" class="form-control" name="t3" value="{{ request_date }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Adoption Reason / Purpose</label>
+                        <textarea class="form-control" name="t5" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Occupation</label>
+                        <input type="text" class="form-control" name="t6">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Current Family Members</label>
+                        <input type="text" class="form-control" name="t7">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Annual Income</label>
+                        <input type="text" class="form-control" name="t8">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Asset Details</label>
+                        <textarea class="form-control" name="t9" rows="3"></textarea>
+                    </div>
+
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="submit" class="btn btn-submit px-4">Submit</button>
+                        <button type="reset" class="btn btn-reset px-4">Reset</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+        <!-- RIGHT SECTION (IMAGE + ADOPTION INFO) -->
+        <div class="col-lg-6 text-center">
+
+            <img src="{% static 'images/welcome.jpg' %}" class="img-fluid right-img mb-4" alt="Adoption">
+
+            <h4 class="fw-bold text-dark">“Every child deserves a loving home.”</h4>
+            <p class="text-muted">
+                Your decision to adopt brings hope, love, and a bright future to a child.
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white py-3 text-center">
+    <p class="m-0">
+        &copy; <script>document.write(new Date().getFullYear());</script> Child Adoption | All rights reserved.
+    </p>
+</footer>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>

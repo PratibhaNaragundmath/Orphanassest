@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption - Payment</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        /* HEADER */
+        .main-header {
+            background: linear-gradient(to right, #ff914d, #ff6600);
+            padding: 16px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        .main-header a {
+            color: white !important;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .brand-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        /* PAYMENT CARD */
+        .payment-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .payment-card h3 {
+            font-weight: 700;
+            font-size: 28px;
+            color: #222;
+        }
+
+        .highlight-text {
+            color: #ff6600;
+            font-weight: 600;
+        }
+
+        .btn-orange {
+            background: #ff6600;
+            border: none;
+            padding: 12px 26px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .btn-orange:hover {
+            background: #e05600;
+        }
+
+        .btn-grey {
+            border-radius: 8px;
+            padding: 12px 25px;
+        }
+
+        /* IMAGE */
+        .side-image {
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+        }
+
+        /* FOOTER */
+        .footer-section {
+            background: #1e1e1e;
+            color: #ddd;
+            padding: 50px 0;
+        }
+        .footer-section h5 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .footer-section i {
+            color: #ff6600;
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            background: #131313;
+            padding: 12px;
+            color: #fff;
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <a class="brand-title" href="{% url 'index' %}">Orphan Assist</a>
+
+        <nav>
+            <ul class="d-flex list-unstyled m-0 gap-4 fs-6 p-4">
+                <li><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+                <li><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+                <li><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- MAIN SECTION -->
+<div class="container py-5">
+    <div class="row g-5 align-items-center">
+
+        <!-- PAYMENT FORM -->
+        <div class="col-lg-6">
+
+            <div class="payment-card">
+
+                <h3 class="text-center mb-3">Registration Payment</h3>
+
+                <p class="text-center highlight-text mb-4">
+                    Kindly complete the payment to continue the adoption process.
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Amount</label>
+                        <input type="text" class="form-control form-control-lg" readonly name="t1" value="1000">
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="submit" name="b1" class="btn btn-orange text-white">
+                            Proceed to Pay
+                        </button>
+
+                        <a href="{% url 'reg' %}" class="btn btn-secondary btn-grey">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="col-lg-6 text-center">
+            <img src="{% static 'images/welcome.jpg' %}" class="img-fluid side-image" alt="">
+        </div>
+
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+                    <h5>Contact Us</h5>
+                    <p><i class="fa fa-phone"></i> +91 9742577958, +91 9845205098</p>
+                    <p><i class="fa fa-envelope"></i> Orphanassestlifeline@gmail.com</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <h5>Address</h5>
+                    <p><i class="fa fa-map-marker"></i> Sushanti Children's Home, Brahmagiri Colon,Gadag.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom text-center">
+        &copy; <script>document.write(new Date().getFullYear());</script> OrphanAssest
+    </div>
+
+</footer>
+
+</body>
+</html>

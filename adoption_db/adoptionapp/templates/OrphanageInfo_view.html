@@ -1,0 +1,81 @@
+{% load static %}
+{% include 'admin_header.html' %}
+
+<div class="welcome-wrap py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Table Section -->
+            <div class="col-12 col-lg-8">
+                <div class="welcome-content">
+                    <header class="entry-header mb-4">
+                        <h2 class="entry-title">Orphanage Details</h2>
+                    </header>
+
+                    <div class="entry-content">
+                        <table class="table table-bordered table-striped table-hover shadow-sm">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th>Member Name</th>
+                                    <th>Age</th>
+                                    <th>Joining Year</th>
+                                    <th>Blood Group</th>
+                                    <th>Guardian Name</th>
+                                    <th colspan="2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in userdict %}
+                                <tr>
+                                    <td>{{ i.Member_Name }}</td>
+                                    <td>{{ i.Age }}</td>
+                                    <td>{{ i.JoiningYear }}</td>
+                                    <td>{{ i.blood_group }}</td>
+                                    <td>{{ i.guardian_name }}</td>
+                                    <td class="text-center">
+                                        <a href="{% url 'OrphanageInfo_update' i.id %}" class="btn btn-sm btn-success">
+                                            <i class="fa fa-edit"></i> Update
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{% url 'OrphanageInfo_del' i.id %}"
+                                           class="btn btn-sm btn-danger"
+                                           onclick="return confirm('Are you sure you want to delete this record?');">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">No orphanage records found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="col-12 col-lg-4 text-center">
+                <img src="{% static 'images/welcome.jpg' %}" alt="welcome" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+    <div class="footer-bar bg-secondary py-3 text-center">
+        <div class="container">
+            <p class="m-0">
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | OrphanAssest
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/swiper.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>

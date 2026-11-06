@@ -1,0 +1,119 @@
+{% load static %}
+{% include 'manager_header.html' %}
+
+<style>
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+    .form-control, .form-select {
+        border-radius: 8px;
+    }
+    .card-custom {
+        border-radius: 14px;
+        overflow: hidden;
+    }
+    .header-gradient {
+        background: linear-gradient(90deg, #0056b3, #007bff);
+        color: white;
+        padding: 22px;
+        text-align: center;
+    }
+    .side-image {
+        width: 100%;
+        border-radius: 12px;
+    }
+    .back-link {
+        font-weight: bold;
+        color: #d00 !important;
+    }
+</style>
+
+<div class="container py-5">
+
+    <div class="card shadow card-custom">
+        <div class="header-gradient">
+            <h3 class="m-0"><i class="fa fa-file-text"></i> Applicant Visiting Details</h3>
+        </div>
+
+        <div class="card-body p-4">
+
+            <a href="{{ request.META.HTTP_REFERER }}" class="back-link">
+                <i class="fa fa-arrow-left"></i> Go Back
+            </a>
+
+            <div class="row mt-4 g-4">
+
+                <!-- Form Section -->
+                <div class="col-lg-6">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Application Number</label>
+                            <input type="text" class="form-control" name="t1" required value="{{applno}}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Visited Date</label>
+                            <input type="date" class="form-control" name="t2" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Document Verification</label>
+                            <input type="text" class="form-control" name="t3" required placeholder="Verified / Pending / Issues found">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Visiting Status</label>
+                            <div class="border rounded p-2">
+                                <label class="me-3">
+                                    <input type="radio" name="t4" value="Approved" required> Approved
+                                </label>
+                                <label>
+                                    <input type="radio" name="t4" value="Not Approved" required> Not Approved
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 text-center">
+                            <button class="btn btn-primary px-4">
+                                <i class="fa fa-check-circle"></i> Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Image Section -->
+                <div class="col-lg-6">
+                    <img src="{% static 'images/welcome.jpg' %}" class="side-image shadow" alt="Applicant Visit">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="site-footer mt-5">
+    <div class="footer-widgets py-4" style="background: #f1f4f7;">
+        <div class="container">
+            <h4 class="fw-bold mb-3">Contact</h4>
+            <p><i class="fa fa-phone"></i> +45 677 8993000 223</p>
+            <p><i class="fa fa-envelope"></i> office@template.com</p>
+            <p><i class="fa fa-map-marker"></i> Main St, Los Angeles, CA</p>
+        </div>
+    </div>
+
+    <div class="footer-bar py-3 bg-dark text-white text-center">
+        <p class="m-0">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+            All rights reserved | OrphanAssest
+        </p>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>

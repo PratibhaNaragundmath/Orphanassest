@@ -1,0 +1,38 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h4>Give Reward to {{ user.fullname }}</h4>
+        </div>
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Reward Title</label>
+                    <input type="text" name="title" class="form-control" placeholder="Ex: Gold Donor">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Reward Points</label>
+                    <input type="number" name="points" class="form-control" placeholder="Ex: 50">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3"></textarea>
+                </div>
+
+                <button class="btn btn-success">Give Reward</button>
+                <a href="{% url 'admin_home' %}" class="btn btn-secondary">Cancel</a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

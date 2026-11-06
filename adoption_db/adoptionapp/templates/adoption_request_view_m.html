@@ -1,0 +1,114 @@
+{% load static %}
+{% include 'manager_header.html' %}
+
+{% if messages %}
+  {% for message in messages %}
+    <script>alert("{{ message }}");</script>
+  {% endfor %}
+{% endif %}
+
+<div class="welcome-wrap py-4" style="background:#f7f9fc;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+
+        <div class="card shadow-lg border-0 rounded-3">
+          <div class="card-header bg-primary text-white text-center py-3">
+            <h3 class="m-0"><i class="fa fa-users"></i> Applicant Information</h3>
+          </div>
+
+          <div class="card-body p-4">
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover align-middle">
+                <thead class="bg-dark text-white text-center">
+                  <tr>
+                    <th>Photo</th>
+                    <th>Child ID</th>
+                    <th>Adoption Reason</th>
+                    <th>Request ID</th>
+                    <th>Requested By</th>
+                    <th>Request Date</th>
+                    <th>Status</th>
+                    <th colspan="3" class="bg-secondary">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for u in userdict %}
+                    <tr>
+                      <td>
+                        <img src="../media/{{ u.photo}}" class="img-thumbnail rounded" width="150" height="150" alt="Child">
+                      </td>
+                      <td class="fw-bold">{{ u.id }}</td>
+                      <td>{{ u.adoption_reason }}</td>
+                      <td>{{ u.request_id }}</td>
+                      <td>{{ u.request_by }}</td>
+                      <td>{{ u.request_date }}</td>
+
+                      <td>
+                        {% if u.status == "Pending" %}
+                          <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif u.status == "Approved" %}
+                          <span class="badge bg-success">Approved</span>
+                        {% else %}
+                          <span class="badge bg-danger">{{ u.status }}</span>
+                        {% endif %}
+                      </td>
+
+                      <td>
+                        <a href="{% url 'ParentsInfo_view' u.id %}" class="btn btn-info btn-sm w-100">
+                          <i class="fa fa-user"></i> Personal Details
+                        </a>
+                      </td>
+
+                      <td>
+                        <a href="{% url 'req_status_update' u.id %}" class="btn btn-success btn-sm w-100">
+                          <i class="fa fa-check-circle"></i> Accept
+                        </a>
+                      </td>
+
+                      <td>
+                        <a href="{% url 'homevststatus' u.id %}" class="btn btn-warning btn-sm w-100">
+                          <i class="fa fa-home"></i> Home Visit
+                        </a>
+                      </td>
+                    </tr>
+
+                  {% empty %}
+                    <tr>
+                      <td colspan="10" class="text-center text-muted py-3">
+                        <i class="fa fa-info-circle"></i> No applicant requests available
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+  <div class="footer-bar bg-secondary py-3 text-center">
+    <div class="container">
+      <p class="m-0">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script>
+        All rights reserved | OrphanAssest
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap + FontAwesome -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>

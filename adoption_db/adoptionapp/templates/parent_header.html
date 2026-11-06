@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/elegant-fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+</head>
+<body>
+
+<header class="site-header bg-dark" style="background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="site-branding">
+            <h1 class="site-title m-0">
+                <a href="{% url 'index' %}" class="text-white text-decoration-none">Orphan Assist</a>
+            </h1>
+        </div>
+        <nav class="site-navigation p-4">
+            <ul class="d-flex list-unstyled m-0">
+                 <li class="current-menu-item"><a href="{% url 'parent_home' %}">Home</a></li>
+                                <li class="mx-2"><a class="text-white" href="{% url 'BabyInfo_view_p' %}">Child Request</a></li>
+                                <li class="mx-2"><a class="text-white" href="{% url 'adoption_status_view_p' %}">Request Status</a></li>
+                                <li class="mx-2"><a class="text-white" href="{% url 'Homevstngstatus_view_p' %}">Home Visting Status</a></li>
+                                <li class="mx-2"><a class="text-white" href="{% url 'changepass' %}">ChangePassword</a></li>
+
+
+                <li class="mx-2"><a class="text-white" href="{% url 'login' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

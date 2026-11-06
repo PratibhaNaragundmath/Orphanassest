@@ -1,0 +1,213 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact – Orphan Assist</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    body {
+        background: #fff7f0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-header {
+        background: linear-gradient(135deg, #ff9a57, #ff6733);
+        padding: 60px 0;
+        border-radius: 0 0 25px 25px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .contact-header h1 {
+        font-size: 42px;
+        font-weight: 700;
+    }
+
+    .contact-header p {
+        font-size: 18px;
+    }
+
+    /* Contact Box */
+ a.contact-box {
+        background: white;
+        padding: 35px;
+        border-radius: 18px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+        transition: 0.3s ease-in-out;
+    }
+
+    .contact-box:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Icons */
+    .icon-box {
+        background: #ffe2d1;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        color: #ff6f3c;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    /* Form */
+    .form-control {
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .contact-btn {
+        background: #ff6f3c;
+        color: white;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+    }
+
+    .contact-btn:hover {
+        background: #e05627;
+    }
+
+    /* Map */
+    .map-box {
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+        style="background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold text-warning" href="{% url 'index' %}"
+               style="font-size:30px; font-weight:bold;">
+                <span class="fs-1">Orphan Assist</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse  justify-content-end" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white" href="{% url 'about' %}">About</a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white btn btn-danger" href="{% url 'charityinfo' %}">Donor Reg</a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link text-white btn btn-danger" href="{% url 'login' %}">Login</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<!-- HERO -->
+<div class="contact-header">
+    <h1>Contact Us</h1>
+    <p>We are always here to support you in your adoption journey</p>
+</div>
+
+
+<!-- MAIN CONTACT SECTION -->
+<div class="container my-5">
+    <div class="row g-4">
+
+        <!-- CONTACT DETAILS -->
+        <div class="col-lg-4">
+
+            <div class="contact-box mb-4 text-center justify-content-center">
+                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                <h5>Our Address</h5>
+                <p class="text-muted">
+                    OrpanAssist Adoption Center,<br>
+                    Gadag,<br>
+                    Karnataka, India - 580025
+                </p>
+            </div>
+
+            <div class="contact-box mb-4 text-center">
+                <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                <h5>Phone Number</h5>
+                <p class="text-muted">
+                    +91 98765 43210<br>
+                    +91 91234 56789
+                </p>
+            </div>
+
+            <div class="contact-box mb-4 text-center">
+                <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                <h5>Email</h5>
+                <p class="text-muted">support@janani.org</p>
+            </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="col-lg-4">
+            <div class="contact-box">
+
+            </div>
+        </div>
+
+        <!-- MAP -->
+        <div class="col-lg-4">
+            <div class="map-box">
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.32633567551!2d75.6338843748191!3d15.412928356673746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb8f944f7cb2301%3A0xe39ea5d1d5e09e33!2sTontadarya%20College%20of%20Engineering%2C%20Gadag!5e0!3m2!1sen!2sin!4v1764226647084!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="site-footer bg-dark text-white mt-5">
+    <div class="footer-bar bg-secondary py-3 text-center">
+        <div class="container">
+            <p class="m-0">&copy; <script>document.write(new Date().getFullYear());</script> OrphanAssist — All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

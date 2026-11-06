@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Child Adoption</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <style>
+        .entry-title {
+            color: #FF6600;
+            font-weight: bold;
+        }
+        .go-back-btn {
+            color: #d9534f;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        .go-back-btn:hover {
+            text-decoration: underline;
+        }
+        .details-table th {
+            background-color: #007bff !important;
+            color: #fff;
+            font-size: 15px;
+        }
+        .details-table td {
+            font-weight: 600;
+            background: #fafafa;
+        }
+        body {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body class="single-page about-page">
+
+<!-- HEADER -->
+{% include 'manager_header.html' %}
+
+<div class="page-header mb-4"></div>
+
+<div class="welcome-wrap py-4">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-lg-10">
+                <div class="welcome-content p-4 shadow bg-white rounded">
+
+                    <header class="entry-header text-center mb-4">
+                        <h2 class="entry-title">Personal Details</h2>
+                    </header>
+
+                    <!-- Back Button -->
+                    <p>
+                        <a href="{{ request.META.HTTP_REFERER }}" class="go-back-btn">
+                            <i class="fa fa-arrow-left"></i> Go Back
+                        </a>
+                    </p>
+
+                    <!-- Data Table -->
+                    <div class="table-responsive mt-3">
+                        <table class="table table-bordered table-striped text-center details-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Applicant Name</th>
+                                    <th>Application No</th>
+                                    <th>Parent Type</th>
+                                    <th>Husband Name</th>
+                                    <th>Spouse Name</th>
+                                    <th>Education</th>
+                                    <th>Photo</th>
+                                    <th>Marriage Certificate</th>
+                                    <th>Aadhar Copy</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for i in userdict %}
+                                <tr>
+                                    <td>
+                                     {% if i.Email %}
+    <a href="{% url 'location_view' i.Email %}" class="badge bg-success text-white p-3">
+        {{ i.Applicant_name }}
+    </a>
+{% else %}
+    <span class="badge bg-secondary text-dark p-3">
+        {{ i.Applicant_name }} (No Email)
+    </span>
+{% endif %}
+
+
+                                        <br>
+                                        <span class="text-danger"> View Location </span>
+                                    </td>
+                                    <td>{{ i.Application_No }}</td>
+                                    <td>{{ i.parent_type }}</td>
+                                    <td>{{ i.Husband_name }}</td>
+                                    <td>{{ i.spouse_name }}</td>
+                                    <td>{{ i.education }}</td>
+
+                                    <td>
+                                        <img src="{{ i.Photo.url }}" class="img-thumbnail" width="130" height="130">
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ i.Marriage_certificate.url }}" class="btn btn-sm btn-primary">
+                                            View File
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ i.aadhar_copy.url }}" class="btn btn-sm btn-info">
+                                            View File
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer bg-dark text-white mt-5">
+    <div class="footer-bar bg-secondary py-3 text-center">
+        <div class="container">
+            <p class="m-0">
+                © <script>document.write(new Date().getFullYear());</script> All rights reserved | OrphanAssest
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>

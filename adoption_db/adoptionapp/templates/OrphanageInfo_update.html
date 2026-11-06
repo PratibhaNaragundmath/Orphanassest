@@ -1,0 +1,83 @@
+{% load static %}
+{% include 'admin_header.html' %}
+
+<div class="container my-5">
+    <div class="row g-4">
+
+        <!-- Left Form Section -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Update Orphanage Details</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="post" action="{% url 'OrphanageInfo_db' %}">
+                        {% csrf_token %}
+
+                        {% for i in userdict %}
+                        <input type="hidden" name="id" value="{{ i.id }}">
+
+                        <!-- AGE -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Age</label>
+                            <input type="text"
+                                   name="t2"
+                                   class="form-control form-control-lg"
+                                   value="{{ i.Age }}"
+                                   placeholder="Enter age"
+                                   required>
+                        </div>
+
+                        <!-- SUBMIT -->
+                        <div class="text-start mt-4">
+                            <button class="btn btn-success px-4 py-2">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                        </div>
+
+                        {% endfor %}
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'images/welcome.jpg' %}"
+                 class="img-fluid rounded shadow"
+                 alt="welcome">
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer mt-5">
+    <div class="footer-widgets py-4 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 mt-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled small">
+                        <li><i class="fa fa-phone"></i> +45 677 8993000 223</li>
+                        <li><i class="fa fa-envelope"></i> office@template.com</li>
+                        <li><i class="fa fa-map-marker"></i> Los Angeles, CA</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bar text-center py-3 bg-secondary text-white small">
+        Copyright © <script>document.write(new Date().getFullYear());</script>
+        All rights reserved | OrphanAssest
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

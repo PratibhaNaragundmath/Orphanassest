@@ -1,0 +1,106 @@
+{% load static %}
+{% include 'parent_header.html' %}
+
+<style>
+    .adopt-wrapper {
+        background: #fdf7f2; /* soft warm adoption theme */
+        padding: 50px 0;
+        position: relative;
+    }
+
+    /* Left / Right decorative icons */
+    .adopt-left, .adopt-right {
+        position: absolute;
+        top: 20%;
+        opacity: 0.2;
+        width: 140px;
+    }
+    .adopt-left { left: 10px; }
+    .adopt-right { right: 10px; }
+
+    .status-box {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+        border-top: 5px solid #FF8800;
+    }
+
+    .entry-title {
+        font-weight: 700;
+        color: #FF6600;
+        font-size: 28px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        height: 46px;
+    }
+
+    .btn-primary {
+        background-color: #FF6600 !important;
+        border: none;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .btn-primary:hover {
+        background-color: #e05d00 !important;
+    }
+</style>
+
+<div class="adopt-wrapper">
+
+    <!-- Adoption Icons on left and right -->
+    <img src="{% static 'images/donation.png' %}" class="adopt-left" alt="Adoption Left">
+    <img src="{% static 'images/donation-gray.png' %}" class="adopt-right" alt="Adoption Right">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-5">
+
+                <div class="status-box text-center">
+
+                    <h2 class="entry-title mb-3">Adoption Request Status</h2>
+
+                    {% if msg %}
+                        <p class="text-danger fw-bold fs-5">{{ msg }}</p>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3 text-start">
+                            <label class="fw-bold">Enter Application No</label>
+                            <input type="text" name="t1" class="form-control" placeholder="Application Number" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search"></i> Check Status
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer bg-dark text-white mt-5">
+    <div class="footer-bar bg-secondary py-3 text-center">
+        <div class="container">
+            <p class="m-0">
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | OrphanAssest
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap + FontAwesome -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/custom.js' %}"></script>

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Home - Orphan Assist</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+        .stats-card {
+            transition: 0.3s;
+        }
+        .stats-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 18px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+{% include 'donor_menu.html'%}
+<!-- Main Container -->
+<div class="container py-4">
+
+    <!-- Welcome Section -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Welcome Donor</h2>
+        <p class="text-muted">Thank you for supporting orphanages and making a difference ❤️</p>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="row text-center mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card stats-card p-4 shadow-sm">
+                <h4 class="fw-bold">{{ total_donations }}</h4>
+                <p class="text-muted">Total Donations Given</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card stats-card p-4 shadow-sm">
+                <h4 class="fw-bold">{{ orphanages_supported }}</h4>
+                <p class="text-muted">Orphanages Supported</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card stats-card p-4 shadow-sm">
+                <h4 class="fw-bold">₹{{ donated_amount }}</h4>
+                <p class="text-muted">Total Amount Donated</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Donate -->
+    <div class="text-center mb-5">
+        <a href="{% url 'donationinfo' %}" class="btn btn-lg btn-success px-4 py-2">
+            💝 Give a Donation Now
+        </a>
+    </div>
+
+    <!-- Orphanage Needs Section -->
+    <h4 class="section-title">Urgent Needs From Orphanages</h4>
+    <div class="row">
+
+        {% for need in urgent_needs %}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold">{{ need.orphanage_name }}</h5>
+                    <p class="text-muted">{{ need.description }}</p>
+                    <p><b>Required:</b> {{ need.item_needed }}</p>
+                    <a href="{% url 'donationinfo' %}" class="btn btn-primary btn-sm">Donate</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No urgent needs at the moment.</p>
+        {% endfor %}
+
+    </div>
+
+    <!-- How Donations Help -->
+    <div class="mt-5">
+        <h4 class="section-title">How Your Donation Helps</h4>
+
+        <ul class="list-group">
+            <li class="list-group-item">✔ Provides food and clothing for underprivileged children</li>
+            <li class="list-group-item">✔ Supports health checkups and medical care</li>
+            <li class="list-group-item">✔ Helps fund education and books</li>
+            <li class="list-group-item">✔ Supports shelter maintenance and safety</li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

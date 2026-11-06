@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orphanage Details - Child Adoption</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <style>
+        body {
+            background: #f7f8fa;
+        }
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FF6600;
+        }
+        .table thead {
+            background: #FF6600;
+            color: white;
+        }
+        .table tbody tr:hover {
+            background-color: #fff3e0;
+        }
+        .content-card {
+            border-radius: 12px;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="nav-bar bg-white shadow-sm py-2 justify-content-between align-items-cente">
+    <div class="container  justify-content-between align-items-center">
+        <nav class="d-flex align-items-end">
+            {% include 'donor_menu.html' %}
+        </nav>
+    </div>
+</div>
+
+<!-- Header -->
+<section class="py-4 bg-light border-bottom">
+    <div class="container">
+        <h3 class="page-title text-center">Orphanage Details</h3>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="content-card">
+
+                <h4 class="mb-4 fw-bold" style="color:#444;">
+                    👨‍👩‍👧 Orphanage Members Information
+                </h4>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-center align-middle">
+                        <thead>
+                            <tr>
+                                <th>Member Name</th>
+                                <th>Age</th>
+                                <th>Joining Year</th>
+                                <th>Blood Group</th>
+                                <th>Guardian Name</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for i in userdict %}
+                            <tr>
+                                <td>{{ i.Member_Name }}</td>
+                                <td>{{ i.Age }}</td>
+                                <td>{{ i.JoiningYear }}</td>
+                                <td>{{ i.blood_group }}</td>
+                                <td>{{ i.guardian_name }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-light pt-4 pb-2 mt-5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                <h5>Contact</h5>
+                <ul class="list-unstyled mt-3">
+                    <li><i class="fa fa-phone"></i> +45 677 8993000 223</li>
+                    <li><i class="fa fa-envelope"></i> office@template.com</li>
+                    <li><i class="fa fa-map-marker"></i> Main Str. no 45-46, LA, USA</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-3">
+            <p class="m-0">© <script>document.write(new Date().getFullYear())</script> OrphanAssest</p>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>
